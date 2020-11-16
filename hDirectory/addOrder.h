@@ -21,3 +21,27 @@ void menuSatu()
     }
     clrscr();
 }
+
+void addDrink()
+{
+    validateDrink();
+    order[orderNum].topping[0] = '-';
+    order[orderNum].calories = -1;
+    order[orderNum].time = drinkTime();
+    puts("");
+    printf("Successfully added a new menu!");
+    getchar();
+    orderNum++;
+}
+
+void addDessert()
+{
+    validateDessert();
+    order[orderNum].size = '-';
+    order[orderNum].flavor[0] = '-';
+    order[orderNum].time = dessertTime();
+    puts("");
+    printf("Successfully added a new menu!");
+    getchar();
+    orderNum++;
+}
