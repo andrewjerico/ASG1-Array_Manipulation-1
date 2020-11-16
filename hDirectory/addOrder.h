@@ -97,3 +97,53 @@ int dessertTime()
     }
     return time;
 }
+
+void validateDrink()
+{
+    // validasi nama
+    do
+    {
+        printf("Input the name [at least 5 characters]: ");
+        scanf("%[^\n]", order[orderNum].name);
+        getchar();
+    } while (strlen(order[orderNum].name) < 5);
+    //validasi harga
+    do
+    {
+        printf("Input the price [10 - 500]: $ ");
+        scanf("%d", &order[orderNum].price);
+        getchar();
+    } while (order[orderNum].price < 10 || order[orderNum].price > 500);
+    //validasi rasa
+    do
+    {
+        printf("Input the flavor ['Mint'] | ['Mix Berry'] | ['Cheese'](Case Sensitive): ");
+        scanf("%[^\n]", order[orderNum].flavor);
+        getchar();
+    } while (strcmp(order[orderNum].flavor, flavor[0]) == 1 && strcmp(order[orderNum].flavor, flavor[1]) == 1 && strcmp(order[orderNum].flavor, flavor[2]) == 1);
+    // validasi size
+    do
+    {
+        printf("Input the size [S | M | L](Case Sensitive): ");
+        scanf("%c", &order[orderNum].size);
+        getchar();
+    } while (order[orderNum].size != 'S' && order[orderNum].size != 'M' && order[orderNum].size != 'L');
+}
+
+int drinkTime()
+{
+    int time = 10 + (rand() % 41);
+    if (strcmpi(order[orderNum].flavor, flavor[0]) == 0)
+    {
+        time += 10;
+    }
+    else if (strcmpi(order[orderNum].flavor, flavor[1]) == 0)
+    {
+        time += 20;
+    }
+    else if (strcmpi(order[orderNum].flavor, flavor[2]) == 0)
+    {
+        time += 30;
+    }
+    return time;
+}
