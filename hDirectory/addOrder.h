@@ -34,6 +34,8 @@ void addDrink()
     orderNum++;
 }
 
+
+
 void addDessert()
 {
     validateDessert();
@@ -44,4 +46,54 @@ void addDessert()
     printf("Successfully added a new menu!");
     getchar();
     orderNum++;
+}
+
+void validateDessert()
+{
+    // validasi nama
+    do
+    {
+        printf("Input the name [at least 5 characters]: ");
+        scanf("%[^\n]", order[orderNum].name);
+        getchar();
+    } while (strlen(order[orderNum].name) < 5);
+    //validasi harga
+    do
+    {
+        printf("Input the price [10 - 500]: $ ");
+        scanf("%d", &order[orderNum].price);
+        getchar();
+    } while (order[orderNum].price < 10 || order[orderNum].price > 500);
+    //validasi topping
+    do
+    {
+        printf("Input the topping ['Caramel'] | ['Honey'] | ['Syrup'](Case Insensitive): ");
+        scanf("%[^\n]", order[orderNum].topping);
+        getchar();
+    } while (strcmpi(order[orderNum].topping, topping[0]) == 1 && strcmpi(order[orderNum].topping, topping[1]) == 1 && strcmpi(order[orderNum].topping, topping[2]) == 1);
+    // validasi kalori
+    do
+    {
+        printf("Insert calories [1.00 - 99.00]: ");
+        scanf("%lf", &order[orderNum].calories);
+        getchar();
+    } while (order[orderNum].calories < 1.00 || order[orderNum].calories > 99.00);
+}
+
+int dessertTime()
+{
+    int time = 50 + (rand() % 41);
+    if (strcmpi(order[orderNum].topping, topping[0]) == 0)
+    {
+        time += 10;
+    }
+    else if (strcmpi(order[orderNum].topping, topping[1]) == 0)
+    {
+        time += 15;
+    }
+    else if (strcmpi(order[orderNum].topping, topping[2]) == 0)
+    {
+        time += 20;
+    }
+    return time;
 }
