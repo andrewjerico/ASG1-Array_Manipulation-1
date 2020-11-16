@@ -15,11 +15,21 @@ void menuTiga()
                     printf("|%3d  | %-25s | %-10d | %-15s | %-10s | %-15s | %-6c | %-25s |\n",
                            i + 1, history[i].name, history[i].price, history[i].topping, "-", history[i].flavor, history[i].size, history[i].orderTime);
                 }
-               
+                else
+                {
+                    printf("|%3d  | %-25s | %-10d | %-15s | %-10.2lf | %-15s | %-6c | %-25s |\n",
+                           i + 1, history[i].name, history[i].price, history[i].topping, history[i].calories, history[i].flavor, history[i].size, history[i].orderTime);
+                }
             }
         }
-      
+        puts("");
+        pressEnter();
     }
-   
+    else
+    {
+        puts("There is no order history!");
+        puts("");
+        pressEnter();
+    }
     clrscr();
 }
