@@ -1,3 +1,10 @@
+void addDrink();
+void addDessert();
+void validateDessert();
+int dessertTime();
+void validateDrink();
+int drinkTime();
+
 void menuSatu()
 {
     int pilihan;
