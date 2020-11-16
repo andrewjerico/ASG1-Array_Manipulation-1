@@ -21,12 +21,46 @@ void menuEmpat()
                        order[i].flavor, order[i].size);
             }
         }
-	}
-    else
-    {
-    	puts("There is no Dessert or Drink on the list!");
+        do
+        {
+            printf("Choose a menu to order [1 - %d]: ", orderNum);
+            scanf("%d", &orderNo);
+        } while (orderNo < 1 || orderNo > orderNum);
+
+        --orderNo;
+        strcpy(history[cookingNum].name, order[orderNo].name);
+        history[cookingNum].price = order[orderNo].price;
+
+        strcpy(history[cookingNum].topping, order[orderNo].topping);
+        history[cookingNum].calories = order[orderNo].calories;
+
+        strcpy(history[cookingNum].flavor, order[orderNo].flavor);
+        history[cookingNum].size = order[orderNo].size;
+        // history[cookingNum].orderTime = getTime();
+        if (order[orderNo].size == '-')
+        {
+            history[cookingNum].time = dessertTime();
+            char tp[20] = "Dessert";
+            strcpy(history[cookingNum].type, tp);
+        }
+        else
+        {
+            history[cookingNum].time = drinkTime();
+            char tp[20] = "Drink";
+            strcpy(history[cookingNum].type, tp);
+        }
+        getTime(history[cookingNum].orderTime);
+
+        cookingNum++;
+        puts("Successfully add to order list!");
         puts("");
         pressEnter();
-	}
+    }
+    else
+    {
+        puts("There is no Dessert or Drink on the list!");
+        puts("");
+        pressEnter();
+    }
     clrscr();
 }
