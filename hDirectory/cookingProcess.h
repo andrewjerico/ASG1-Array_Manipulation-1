@@ -22,5 +22,12 @@ void menuDua()
                 history[i].time -= 10;
             }
         }
+        printf("Press enter to return to main menu");
+        getchar();
+    }
+    else
+    {
+        printf("There is no cooking process recently!\n\n")
+        pressEnter();
     }
 }
