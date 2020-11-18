@@ -21,13 +21,26 @@ void menuDua()
                 puts("");
                 history[i].time -= 10;
             }
+            if (history[i].time <= 0)
+            {
+                if (cookDone[i] == 0)
+                {
+                    profit += history[i].price;
+                    cookDone[i] = 1;
+                    historyNum++;
+                }
+            }
         }
-        printf("Press enter to return to main menu");
-        getchar();
+        puts("");
+        puts("Press Enter to return main menu");
+        while (getchar() != '\n')
+            ;
     }
     else
     {
-        printf("There is no cooking process recently!\n\n")
+        puts("There is no cooking process recently!");
+        puts("");
         pressEnter();
     }
+    clrscr();
 }
