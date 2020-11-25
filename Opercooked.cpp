@@ -2,16 +2,16 @@
 #include <time.h>
 #include <stdlib.h>
 
-#include "object.h"
-#include "other.h"
-#include "string.h"
+#include "hDirectory/object.h"
+#include "hDirectory/other.h"
+#include "hDirectory/string.h"
 
-#include "menu1.h"
-#include "menu2.h"
-#include "menu3.h"
-#include "menu4.h"
-#include "mainMenu.h"
-
+#include "hDirectory/LinkedList.h"
+#include "hDirectory/addOrder.h"
+#include "hDirectory/cookingProcess.h"
+#include "hDirectory/cookingHistory.h"
+#include "hDirectory/order.h"
+#include "hDirectory/mainMenu.h"
 
 int main() 
 {
