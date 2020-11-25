@@ -1,5 +1,6 @@
 struct Order
 {
+    int id;
     char name[255];
     int price;
     char topping[25];
@@ -9,17 +10,13 @@ struct Order
     int time;
     char orderTime[128];
     char type[20];
-};
-
-Order order[255];
-Order history[255];
+    bool done = false;
+    Order *next, *prev;
+}  *head, *tail, *curr, *cookHead, *cookTail, *historyHead, *historyTail;
 
 char topping[3][20] = {"Caramel", "Honey", "Syrup"};
 char flavor[3][20] = {"Mint", "Mix Berry", "Cheese"};
 
-int orderNum = 0;
-int historyNum = 0;
-int cookingNum = 0;
+int orderNum = 1;
+int cookingNum = 1;
 int profit = 0;
-int orderNo = 0;
-int cookDone[255] = {};

@@ -32,73 +32,66 @@ void menuSatu()
 void addDrink()
 {
     validateDrink();
-    order[orderNum].topping[0] = '-';
-    order[orderNum].calories = -1;
-    order[orderNum].time = drinkTime();
-    puts("");
-    printf("Successfully added a new menu!");
-    getchar();
-    orderNum++;
 }
-
-
 
 void addDessert()
 {
-    validateDessert();
-    order[orderNum].size = '-';
-    order[orderNum].flavor[0] = '-';
-    order[orderNum].time = dessertTime();
-    puts("");
-    printf("Successfully added a new menu!");
-    getchar();
-    orderNum++;
-}
-
-void validateDessert()
-{
+    char name[255];
+    int price;
+    char topp[25];
+    double calories;
+    char size;
+    char flavor[25];
     // validasi nama
     do
     {
         printf("Input the name [at least 5 characters]: ");
-        scanf("%[^\n]", order[orderNum].name);
+        scanf("%[^\n]", name);
         getchar();
-    } while (strlen(order[orderNum].name) < 5);
+    } while (strlen(name) < 5);
     //validasi harga
     do
     {
         printf("Input the price [10 - 500]: $ ");
-        scanf("%d", &order[orderNum].price);
+        scanf("%d", &price);
         getchar();
-    } while (order[orderNum].price < 10 || order[orderNum].price > 500);
+    } while (price < 10 || price > 500);
     //validasi topping
     do
     {
         printf("Input the topping ['Caramel'] | ['Honey'] | ['Syrup'](Case Insensitive): ");
-        scanf("%[^\n]", order[orderNum].topping);
+        scanf("%[^\n]", topp);
         getchar();
-    } while (strcmpi(order[orderNum].topping, topping[0]) == 1 && strcmpi(order[orderNum].topping, topping[1]) == 1 && strcmpi(order[orderNum].topping, topping[2]) == 1);
+    } while (strcmpi(topp, topping[0]) == 1 && strcmpi(topp, topping[1]) == 1 && strcmpi(topp, topping[2]) == 1);
     // validasi kalori
     do
     {
         printf("Insert calories [1.00 - 99.00]: ");
-        scanf("%lf", &order[orderNum].calories);
+        scanf("%lf", &calories);
         getchar();
-    } while (order[orderNum].calories < 1.00 || order[orderNum].calories > 99.00);
+    } while (calories < 1.00 || calories > 99.00);
+    size = '-';
+    flavor[0] = '-';
+    flavor[1] = '\0';
+    push(orderNum, name, price, topp, calories, flavor, size);
+    puts("");
+    printf("Successfully added a new menu!");
+    getchar();
+    orderNum++;
 }
 
-int dessertTime()
+int dessertTime(char *topp)
 {
     int time = 50 + (rand() % 41);
-    if (strcmpi(order[orderNum].topping, topping[0]) == 0)
+    if (strcmpi(topp, topping[0]) == 0)
     {
         time += 10;
     }
-    else if (strcmpi(order[orderNum].topping, topping[1]) == 0)
+    else if (strcmpi(topp, topping[1]) == 0)
     {
         time += 15;
     }
-    else if (strcmpi(order[orderNum].topping, topping[2]) == 0)
+    else if (strcmpi(topp, topping[2]) == 0)
     {
         time += 20;
     }
@@ -107,48 +100,62 @@ int dessertTime()
 
 void validateDrink()
 {
+    char name[255];
+    int price;
+    char topping[25];
+    double calories;
+    char size;
+    char flav[25];
     // validasi nama
     do
     {
         printf("Input the name [at least 5 characters]: ");
-        scanf("%[^\n]", order[orderNum].name);
+        scanf("%[^\n]", name);
         getchar();
-    } while (strlen(order[orderNum].name) < 5);
+    } while (strlen(name) < 5);
     //validasi harga
     do
     {
         printf("Input the price [10 - 500]: $ ");
-        scanf("%d", &order[orderNum].price);
+        scanf("%d", &price);
         getchar();
-    } while (order[orderNum].price < 10 || order[orderNum].price > 500);
+    } while (price < 10 || price > 500);
     //validasi rasa
     do
     {
         printf("Input the flavor ['Mint'] | ['Mix Berry'] | ['Cheese'](Case Sensitive): ");
-        scanf("%[^\n]", order[orderNum].flavor);
+        scanf("%[^\n]", flav);
         getchar();
-    } while (strcmp(order[orderNum].flavor, flavor[0]) == 1 && strcmp(order[orderNum].flavor, flavor[1]) == 1 && strcmp(order[orderNum].flavor, flavor[2]) == 1);
+    } while (strcmp(flav, flavor[0]) == 1 && strcmp(flav, flavor[1]) == 1 && strcmp(flav, flavor[2]) == 1);
     // validasi size
     do
     {
         printf("Input the size [S | M | L](Case Sensitive): ");
-        scanf("%c", &order[orderNum].size);
+        scanf("%c", &size);
         getchar();
-    } while (order[orderNum].size != 'S' && order[orderNum].size != 'M' && order[orderNum].size != 'L');
+    } while (size != 'S' && size != 'M' && size != 'L');
+    topping[0] = '-';
+    topping[1] = '\0';
+    calories = -1;
+    push(orderNum, name, price, topping, calories, flav, size);
+    puts("");
+    printf("Successfully added a new menu!");
+    getchar();
+    orderNum++;
 }
 
-int drinkTime()
+int drinkTime(char *flav)
 {
     int time = 10 + (rand() % 41);
-    if (strcmpi(order[orderNum].flavor, flavor[0]) == 0)
+    if (strcmpi(flav, flavor[0]) == 0)
     {
         time += 10;
     }
-    else if (strcmpi(order[orderNum].flavor, flavor[1]) == 0)
+    else if (strcmpi(flav, flavor[1]) == 0)
     {
         time += 20;
     }
-    else if (strcmpi(order[orderNum].flavor, flavor[2]) == 0)
+    else if (strcmpi(flav, flavor[2]) == 0)
     {
         time += 30;
     }
